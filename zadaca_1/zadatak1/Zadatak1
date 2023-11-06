@@ -1,0 +1,23 @@
+Set Implicit Arguments.
+Require Import Setoid.
+Require Import Lia.
+Require Import List.
+Import ListNotations.
+Require Import Coq.Arith.Arith.
+Import Coq.Bool.Bool.
+
+Goal forall X Y: Prop, 
+  (X/\~Y)\/(~X/\~Y )\/(~X/\Y) ->  ~X\/~Y.
+Proof.
+  intros X Y. intros H. destruct H. 
+  - right. apply H.
+  - left. destruct H.
+  + apply H.
+  + apply H.
+Qed.
+
+Goal forall X Y Z: Prop,
+~(~X/\Y/\Z)/\~(X/\Y/\~Z)/\(X/\~Y/\Z)-> X/\~Y/\Z.
+Proof.
+  intros X Y Z. intros H. destruct H. destruct H0. exact H1.
+Qed. 

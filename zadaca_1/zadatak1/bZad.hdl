@@ -1,0 +1,11 @@
+CHIP bZad
+{
+	IN x, y, z;
+	OUT out;
+	
+	PARTS:
+	
+	Not (in = y, out = notY);
+	And (a = x, b = notY, out = XandnY);
+	And (a = XandnY, b = z, out = out);
+}
