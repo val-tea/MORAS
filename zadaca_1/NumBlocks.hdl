@@ -1,0 +1,58 @@
+CHIP NumBlocks
+{
+	IN in[16];
+	OUT out[16];
+	PARTS:
+	
+	Xor(a = in[0], b = in[1], out = out1);
+	Xor(a = in[1], b = in[2], out = out2);
+	Or( a = true, b = out1, out = out111);
+	FullAdder(a = out111 , b = out1, c = out2, sum = sum1, carry = carry1 ); 
+
+	
+	Xor(a = in[2], b = in[3], out = out3);
+	Xor(a = in[3], b = in[4], out = out4);
+	
+	FullAdder(a = out3 , b = sum1, c = carry1, sum = sum2, carry = carry2 ); 
+	FullAdder(a = out4 , b = sum2, c = carry2, sum = sum3, carry = carry3 ); 
+	
+	Xor(a = in[4], b = in[5], out = out5);
+	Xor(a = in[5], b = in[6], out = out6);
+	
+	FullAdder(a = out5 , b = sum3, c = carry3, sum = sum4, carry = carry4 ); 
+	FullAdder(a = out6 , b = sum4, c = carry4, sum = sum5, carry = carry5 ); 
+	
+	Xor(a = in[6], b = in[7], out = out7);
+	Xor(a = in[7], b = in[8], out = out8);
+	
+	FullAdder(a = out7 , b = sum5 , c = carry5, sum = sum6, carry = carry6 ); 
+	FullAdder(a = out8 , b = sum6 , c = carry6, sum = sum7, carry = carry7 ); 
+	
+	Xor(a = in[8], b = in[9], out = out9);
+	Xor(a = in[9], b = in[10], out = out10);
+	
+	FullAdder(a = out9 , b = sum7 , c = carry7, sum = sum8, carry = carry8 ); 
+	FullAdder(a = out10 , b = sum8 , c = carry8, sum = sum9, carry = carry9 ); 
+	
+	Xor(a = in[10], b = in[11], out = out11);
+	Xor(a = in[11], b = in[12], out = out12);
+	
+	FullAdder(a = out11, b = sum9, c = carry9, sum = sum10, carry = carry10 ); 
+	FullAdder(a = out12, b = sum10 , c = carry10, sum = sum11, carry = carry11 ); 
+	
+	Xor(a = in[12], b = in[13], out = out13);
+	Xor(a = in[13], b = in[14], out = out14);
+	
+	FullAdder(a = out13 , b = sum11 , c = carry11, sum = sum12, carry = carry12 ); 
+	FullAdder(a = out14 , b = sum12 , c = carry12, sum = sum13, carry = carry13 ); 
+
+	Xor(a = in[14], b = in[15], out = out15);
+	
+	FullAdder(a = out15, b = sum13, c = carry13, sum = sum14, carry = carry14 ); 
+	
+	
+	Or(a=sum14, b = false,  out = out[15]);
+
+
+
+}
