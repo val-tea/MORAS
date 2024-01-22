@@ -1,0 +1,40 @@
+class Main
+{
+    function void print(Array a, int n)
+    {
+        var int i;
+        let i = 0;
+        while (i < n){
+            do Output.printInt(a[i]);
+            do Output.printString(",");
+            let i = i+1;
+        }
+        return;
+    }
+    
+	function void main() 
+	{	
+       var Array c;
+       let c = 10;
+       let c = Array.new (6);
+       let c[0] = 22;
+       let c[1] = 11;
+       let c[2] = 4;
+       let c[3] = 30;
+       let c[4] = 23;
+       let c[5] = 12;
+
+       do Qsort.quicksort(c, 0, 5);
+       
+       do Main.print(c, 6);
+
+       do c.dispose();
+
+       return;
+
+       
+
+    
+
+	}
+}
