@@ -1,0 +1,125 @@
+class Vint {
+    field int capacity;
+    field Array vec;
+
+
+    function int eksponent (int n){
+        var int eks, i;
+        let eks = 1;
+        let i = 0;
+        while (i < n){
+            let eks = eks * 2;
+            let i = i+1;
+        }
+        return eks;
+    }
+    method int len (){
+        return capacity;
+    }
+
+    constructor Vint new(int n){
+        if(n<0){
+            let capacity = 1;
+            let vec = Array.new(capacity);
+            return this;
+        }
+        let capacity = Vint.eksponent(n);
+        let vec = Array.new(capacity);
+        return this;
+    }
+    
+    method void set(int k, int v){
+        if ((k > 0) & (k < capacity)){
+        let vec[k] = v;
+        }
+        return;
+    }
+
+    method int get(int k){
+        return vec[k];
+    }
+
+    method void resize (int m){
+        var int i,j, temp_cap, minimum;
+        var Array c;
+        let c = Array.new(capacity);
+
+        let i = 0;        
+        while (i < capacity){
+            let c[i] = vec[i];
+            let i = i + 1;
+        }
+        
+        let temp_cap = Vint.eksponent(m);
+        
+        let minimum = capacity;
+
+        if (temp_cap < capacity){
+            let minimum = temp_cap;
+        }
+
+        let capacity = temp_cap;
+        let vec = Array.new(capacity);
+
+        let j = 0;
+        while (j < minimum){
+            let vec[j] = c[j];
+            let j = j + 1;
+        }
+        
+        do c.dispose();
+        return;
+        }
+    
+    method bool is_eq(Vint a, Vint b){
+        var int i;
+        let i = 0;
+
+        if (~(a.len()= b.len())){
+            return false;
+        }
+
+        while (i < a.len()){
+            if (~(a[i] = b[i])){
+                return false;
+            }
+            let i = i + 1;
+        }
+        
+        return true;
+    }
+
+    method bool elems(Vint a, Vint b){
+        var int i,j,k;
+
+        var int len_a, len_b;
+        let len_a = a.len();
+        let len_b = b.len();
+
+        let k = 0;
+        let i = 0;
+        let j = 0;
+        if (~(len_a=len_b)){
+            return false;
+        }
+
+        while (i < len_a){
+            while (j < len_a){
+                if (a[i] = b[j]){
+                    let k = k + 1;
+                }
+                let j = j+1;
+            }
+            let j = 0;
+            let i = i + 1;
+        }
+
+        if (k = len_a){
+            return true;
+        }
+        return false;
+    }
+
+
+}
+
